@@ -20,7 +20,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Sample Page'
+      title: 'Street Lights'
     })
   ],
   devtools: 'source-map'
