@@ -10,10 +10,32 @@ class Viz {
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v9',
       zoom: 12,
-      center: [-122.447303, 37.753574]
+      center: [-71.1465424, 42.3741259]
     });
 
-  }
-}
+    d3.json('./assets/INFRA_StreetLights.geojson', (error, geojson) => {
+      console.log(geojson);
 
-new Viz()
+      this.map.on('load', () => {
+
+        this.map.addSource('lights', {
+          'type': 'geojson',
+          'data': geojson
+        });
+
+        this.map.addLayer({
+          'id': 'lights',
+          'type': 'circle',
+          'source': 'lights',
+          // 'source-layer': 'sf2010',
+          'paint': {
+            'circle-radius': 3,
+            'circle-color': "#f00"
+            }
+          });
+        });
+      })
+    }
+  }
+
+  new Viz()
