@@ -4,7 +4,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/app.js',
-  output: { path: path.join(__dirname, 'dist'), filename: 'bundle.js' },
+  output: { path: './dist', filename: 'bundle.js' },
+  devServer: {
+   contentBase: 'dist',
+ },
   resolve: {
     // extensions: ['', '.js'],
     alias: {
@@ -36,10 +39,10 @@ module.exports = {
       query: "brfs"
     }]
   },
-  plugins: [
-    // new webpack.optimize.UglifyJsPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Street Lights'
-    })
-  ],
+  // plugins: [
+  //   // new webpack.optimize.UglifyJsPlugin(),
+  //   new HtmlWebpackPlugin({
+  //     title: 'Street Lights'
+  //   })
+  // ],
 };
