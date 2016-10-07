@@ -15,7 +15,7 @@ class Viz {
     });
 
     d3.json('./assets/INFRA_StreetLights.geojson', (error, geojson) => {
-      console.log(geojson);
+      // console.log(geojson);
 
       this.map.on('load', () => {
 
