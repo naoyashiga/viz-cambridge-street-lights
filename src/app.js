@@ -8,9 +8,9 @@ class Viz {
 
     this.map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/light-v9',
-      zoom: 12,
-      center: [-71.1465424, 42.3741259]
+      style: 'mapbox://styles/mapbox/dark-v9',
+      zoom: 13,
+      center: [-71.1322991, 42.3722991]
     });
 
     d3.json('./assets/INFRA_StreetLights.geojson', (error, geojson) => {
@@ -30,7 +30,7 @@ class Viz {
           // 'source-layer': 'sf2010',
           'paint': {
             'circle-radius': 3,
-            'circle-color': "#f00"
+            'circle-color': "#F8F89E"
             }
           });
         });
