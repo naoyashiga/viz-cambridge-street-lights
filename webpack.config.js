@@ -4,9 +4,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/app.js',
-  output: { path: __dirname + '/dist', filename: 'bundle.js' },
+  output: { path: path.join(__dirname, 'dist'), filename: 'bundle.js' },
   resolve: {
-    extensions: ['', '.js'],
+    // extensions: ['', '.js'],
     alias: {
       webworkify: 'webworkify-webpack',
       'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
@@ -15,9 +15,10 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
-        loader: 'babel',
-        exclude: /node_modules/
+        test: /\.js$/,
+        loaders: [ 'babel' ],
+        exclude: /node_modules/,
+        include: __dirname
       },
       {
         test: /\.json$/,
@@ -25,14 +26,15 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        include: path.resolve(__dirname, 'node_modules/webworkify/index.js'),
-        loader: 'worker'
-      },
-      {
-        test: /mapbox-gl.+\.js$/,
+        include: path.resolve('node_modules/mapbox-gl-shaders/index.js'),
         loader: 'transform/cacheable?brfs'
       }
     ],
+    postLoaders: [{
+      include: /node_modules\/mapbox-gl-shaders/,
+      loader: "transform",
+      query: "brfs"
+    }]
   },
   plugins: [
     // new webpack.optimize.UglifyJsPlugin(),
